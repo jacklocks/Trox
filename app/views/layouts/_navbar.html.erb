@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container px-4 px-lg-5">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <%= link_to "Accueil", root_path, class:"nav-link", style:"text-decoration:none;" %>
+        <%= link_to "Les annonces", tools_path,  class:"nav-link", style:"text-decoration:none"%>
+        <%= link_to "Déposer une annonce",new_tool_path, class: "nav-link", style: "text-decoration:none" %>
+        <%= link_to "À propos", about_path, class: "nav-link", style: "text-decoration:none" %>
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <%= link_to "Mon profil", current_user, class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { expanded: "false" } %>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <%= link_to "Mes outils",user_show_tools_path(current_user.id), class: "dropdown-item", style: "text-decoration:none" %>
+              </li>
+              <li>
+                <%= link_to "Mes emprunts",loans_path, class: "dropdown-item", style: "text-decoration:none" %>
+              </li>
+              <li>
+                <%= link_to "Modifier mon profil", edit_user_registration_path, class: "dropdown-item", style: "text-decoration:none" %>
+              </li>
+              <li>
+                <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete } , class:"dropdown-item", style:"text-decoration:none"%>
+              </li>
+            <% else %>
+              <%= link_to "Se connecter", new_user_session_path, class:"nav-link", style:"text-decoration:none" %>
+              <%= link_to "S'inscrire", new_user_registration_path, class:"nav-link", style:"text-decoration:none" %>
+            <% end %>
+      </div>
+  </div>
+</nav>

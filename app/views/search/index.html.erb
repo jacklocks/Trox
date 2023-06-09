@@ -1,0 +1,32 @@
+<%= render 'search/form' %>
+<div id="back_to_annonces">
+  <h1 id="title_results" class="text-center"><%= pluralize(@tools.count, "résultat")%></h1>
+  <%=link_to "Retour aux annonces", tools_path, class:"text-center", style:"color:grey"%>
+</div>
+
+<table id="search_table" class="table table-striped table-hover text-center">
+  <thead>
+    <tr>
+      <th scope="col"><%= sort_link(@query, :title, "Nom de l'outil",style: "text-decoration: none; color:black;" , default_order: :asc) %></th>
+      <th scope="col"><%= sort_link(@query, :description, "Disponible",style: "text-decoration: none; color:black;")%></th>
+      <th scope="col"><%= sort_link(@query, :location, "Fin du prêt en cours",style: "text-decoration: none; color:black;") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tools.each do |tool| %>
+      <tr class="align-middle">
+        <th scope="row"><%= tool.title.truncate(15) %><br><%= link_to "Voir", tool, type:"button", id:"loan_button" ,class:"loan_button text-center" %></td></th>
+        <td style="text-truncate"><% if tool.loaned === true %>
+          ❌ 
+          <%else%>
+          ✅
+          <%end%>
+        </td>
+        <td style="text-truncate"><% if tool.loaned === true %>
+          <%= tool.loan.end_date.strftime('%d/%m/%Y')%>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

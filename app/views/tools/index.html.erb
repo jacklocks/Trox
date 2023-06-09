@@ -1,0 +1,53 @@
+<section id="index_tools">
+<h1 id="index_title">Trouve ce dont tu as besoin :</h1>
+<div class="row">
+  <div class="col-8 mx-auto offset-3">
+    <div class="card mb-3 card-body mb-4">
+      <div id="cart">
+        <div><%= render "mapbox" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div><%= render 'search/form' %>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<h2 class="text-center" style="margin-bottom: 20px;"><%= pluralize(@tools.count, "annonce")%></h2>
+<div id="cards-container" class= "container">
+
+<div id="cards" class="row row-cols-1 row-cols-md-3 g-4" style="margin-bottom:100px;">
+<% @tools.each do |tools| %>
+  
+   <div class="col">
+    <div class="card">    
+      <%= image_tag tools.pic, class:"card-img-top",style:"height:30em;"%>
+      <div class="card-body">
+        <h5 class="card-title text-truncate"><%= tools.title %></h5>
+        <p class="card-text">Actuellement disponible :</span>
+          <% if tools.loaned === true %>
+          ❌
+          <%else%>
+          ✅
+          <%end%>
+        </p>
+        <p class="card-text">Caution :<%= tools.caution %> €</p>
+        <p class="card-text text-truncate">Etat de l'outil : <%= tools.condition %></p>
+
+        <%= link_to "Voir l'annonce", tools ,id:"loan_button", class:"loan_button" %>
+
+      </div>
+       <div class="card-footer" style="text-align:center">
+        <small >Postée le <%= tools.created_at.strftime('%d/%m/%Y')%></small>
+      </div>
+    </div>
+    </div>
+  <% end %>
+  </div>
+ 
+</div>
+</section>

@@ -1,0 +1,17 @@
+<h1 style="text-align :center; padding:20px">Emprunter <%= @tool.title %></h1>
+  <div class="d-flex justify-content-center">
+    <%= form_with(model: @loan, url: tool_loans_path(@tool)) do |f| %>
+      <div class="text-center">
+      <%= f.label :start_date, "Date de début :", style:"padding: 20px" %><br>
+      <%= f.date_field :start_date, placeholder: 'DD/MM/YYYY', style:"padding: 20px"%>
+      </div>
+      <div class="text-center">
+      <%= f.label :end_date, "Date de fin :", style:"padding: 20px" %><br>
+      <%= f.date_field :end_date, placeholder: 'DD/MM/YYYY', style:"padding: 20px" %>
+      </div>
+      <div class="d-flex justify-content-center" style="text-align :center; padding:30px">
+        <%= f.submit "Envoyer la demande"%>
+      </div>
+    <% end %>
+  </div>
+

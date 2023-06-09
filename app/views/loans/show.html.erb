@@ -1,0 +1,16 @@
+<section class="bg-light">
+
+<%= render @loan %>
+
+<% if current_user.id == @loan.user_id || current_user.id == @loan.tool.user_id %>
+<div class="d-flex justify-content-evenly">
+  <button type="button" id="loan_button"><%= link_to "Modifier l'emprunt", edit_loan_path(@loan), class:"loan_button" %></button>
+  <%= button_to "Supprimer cet emprunt", @loan, method: :delete, class:"loan_button",id:"loan_button" %></button>
+  <button type="button" id="loan_button"><%= link_to "Retour à mes emprunts", loans_path, class:"loan_button"%></button>
+</div>
+<% else %>
+<div class="d-flex justify-content-evenly">
+  <button type="button" id="loan_button"><%= link_to "Retour à mes emprunts", loans_path, class:"loan_button"%></button>
+</div>
+<% end %>
+</section>

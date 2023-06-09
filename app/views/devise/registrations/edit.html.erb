@@ -1,0 +1,97 @@
+<section id="sign_up" class="container">
+  <div class="card card-style1 border-0">
+<h2>Editer <%= resource_name.to_s.humanize%></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  
+  <div class="col">
+    <%= f.label :image_url,"Ajouter une image" %><br />
+    <label class="bouton", style="margin:10px">
+    Parcourir
+    <span style="display:none;">
+      <%= f.file_field :image_url, id: "fileUploader"%>
+    </span>
+  </label>
+
+  </div>
+
+  <div class="col">
+    <%= f.label :firstname,"Prénom" %><span class="obligatoire">*</span><br />
+    <%= f.text_field :firstname, minlength: 2, autofocus: true, required: true, minlength: 2, style:"width: 100%;height:50px; border-radius:4px; text-align:center;",class: "input-border"%>
+  </div>
+
+  <div class="col">
+    <%= f.label :lastname, "Nom" %><span class="obligatoire">*</span><br />
+    <%= f.text_field :lastname, autofocus: true,  required: true, style:"width: 100%;height:50px; border-radius:4px; text-align:center;",class: "input-border"%>
+  </div>
+
+  <div class="col">
+    <%= f.label :phone, "Téléphone" %><span class="obligatoire">*</span><br />
+    <%= f.telephone_field :phone, autofocus: true,  required: true,style:"width: 100%;height:50px; border-radius:4px; text-align:center;", class: "input-border" %>
+  </div>
+
+  <div class="col">
+    <%= f.label :address, "Adresse" %><span class="obligatoire">*</span><br />
+    <%= f.text_field :address, autofocus: true,  required: true, style:"width: 100%;height:50px; border-radius:4px; text-align:center;",class: "input-border" %>
+  </div>
+
+  <div class="col">
+    <%= f.label :address_complement, "Complément d'adresse" %><br />
+    <%= f.text_field :address_complement, autofocus: true, style:"width: 100%;height:50px; border-radius:4px; text-align:center;",class: "input-border" %>
+  </div>
+
+  <div class="col">
+    <%= f.label :postcode, "Code postal" %><span class="obligatoire">*</span><br />
+    <%= f.number_field :postcode, in: 10000..99999, autofocus: true, required: true,style:"width: 100%;height:50px; border-radius:4px; text-align:center;", class: "input-border" %>
+  </div>
+  
+  <div class="col">
+    <%= f.label :email %><span class="obligatoire">*</span><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",style:"width: 100%;height:50px; border-radius:4px; text-align:center;", class: "input-border" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>En attente de confirmation : <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="col">
+    <%= f.label :password, "Mot de passe" %> <i>(laisser vide si vous ne souhaitez pas le modifier)</i><br />
+    <%= f.password_field :password, autocomplete: "Nouveau mot de passe",style:"width: 100%;height:50px; border-radius:4px; text-align:center;", class: "input-border" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> caractères minimum</em>
+    <% end %>
+  </div>
+
+  <div class="col">
+    <%= f.label :password_confirmation, "confirmation du mot de passe" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "Nouveau mot de passe",style:"width: 100%;height:50px; border-radius:4px; text-align:center;", class: "input-border" %>
+  </div>
+
+  <div class="col">
+    <%= f.label :current_password,"Mot de passe actuel" %><span class="obligatoire">*</span> <i>(nous avons besoin de votre mot de passe actuel pour confirmer vos changements)</i><br />
+    <%= f.password_field :current_password, autocomplete: "Mot de passe actuel", style:"text-align:center" %>
+  </div>
+
+  <div class="actions", style="text-align:center">
+    <%= f.submit "Modifier", style: "margin:10px"%>
+  </div>
+ 
+<% end %>
+
+<h4 style="text-align:center">Annuler la création de mon compte</h4>
+
+<div style="text-align:center">Pas satisfait? <%= button_to "Annuler mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sur?", turbo_confirm: "Êtes-vous sur?" }, method: :delete, class:"bouton", style:"margin-bottom:30px"%></div>
+
+<div class="col">
+<%= link_to "Retour", :back, class:"bouton"%>
+</div>
+</div>
+
+</section>
+
+
+
+

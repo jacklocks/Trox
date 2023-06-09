@@ -1,0 +1,31 @@
+<section id="sign_in" class="container">
+<div class="card card-style1 border-0">
+<h2 >Se connecter</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="col" >
+    <%= f.label :email, "Adresse email" %><span class="obligatoire">*</span><br />
+    <%= f.email_field :email , autofocus: true,class: "text", autocomplete: "email", style:"width: 100%;height:50px; border-radius:4px; text-align:center;", class: "input-border" %>
+  </div>
+
+  <div class="col" >
+    <%= f.label :password, "Mot de passe" %><span class="obligatoire">*</span><br />
+    <%= f.password_field :password, class:"text", autocomplete: "current-password", style:"width: 100%;height:50px; border-radius:4px; text-align:center;", class: "input-border" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="col" >
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me ,"Se souvenir de moi"  %>
+    </div>
+  <% end %>
+
+  <div class="col" >
+    <%= f.submit "Se connecter"%>
+  <% end %>
+  <div class="d-flex align-items-end">
+    <%= render "devise/shared/links" %>
+  </div>
+  </div>
+</section>
+

@@ -1,0 +1,55 @@
+<div data-controller="map" >
+  <div class="row">
+    <div class="column" style="background-color:#aaa;">
+      <div id="map" data-markers="<%= @markers.to_json %>"></div>
+    </div>
+
+    <div class="column" style="background-color:#bbb;">
+      <%= form_with(model: tool) do |form| %>
+        <% if tool.errors.any? %>
+          <div style="color: red">
+            <h5><%= pluralize(tool.errors.count, "erreur") %>, cette annonce ne peut pas être publiée:</h5>
+            <ul>
+              <% tool.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div style="width: 100%;height:50px; border-radius:4px; text-align:center;">
+          <%= form.label :title, "Titre"%><span class="obligatoire">*</span>
+          <%= form.text_field :title %>
+        </div>
+        <div style="text-align:center; margin-top:40px;">
+          <%= form.label :description%><span class="obligatoire">*</span>
+          <%= form.text_area :description %>
+        </div>
+        <div class="col">
+          <%= form.label :pic,"Ajouter une image" %><span class="obligatoire">*</span><br />
+          <label class="bouton", style="margin:10px">
+            Parcourir
+            <span style="display:none;">
+              <%= form.file_field :pic, id: "fileUploader"%>
+            </span>
+          </label>
+        </div>
+        <div id="geocoder" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <%= form.label :location, "Localisation"%><span class="obligatoire">*</span>
+          <%= form.hidden_field :location, id: 'tool_location' %>
+        </div>
+        <div>
+          <div style="width: 100%;height:50px; border-radius:4px; text-align:center; margin-bottom:40px; margin-top:20px">
+            <%= form.label :caution %><span class="obligatoire">*</span>
+            <%= form.text_field :caution %>
+          </div>
+          <div style="width: 100%;height:50px; border-radius:4px; text-align:center; margin-bottom:60px">
+            <%= form.label :condition, "Etat" %><span class="obligatoire">*</span>
+            <%= form.text_field :condition %>
+          </div>
+          <div style="text-align:center">
+            <%= form.submit "Créer un outil" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+

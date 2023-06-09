@@ -1,0 +1,24 @@
+<section class="bg-light">
+
+
+<h1 style="text-align:center; padding :100px 0px 50px 0px">Mes outils</h1>
+
+<table class="table table-striped table-hover text-center">
+<thead>
+    <tr>
+      <th scope="col">Nom de l'outil</th>
+      <th scope="col">Disponibilité de l'outil</th>
+      <th scope="col">Voir les détails</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% current_user.tools.each do |tool| %>
+    <tr class="align-middle">
+      <td><%=tool.title%></td>
+      <td><%=tool.loaned ? "❌" : "✅" %></td>
+            <td><%= link_to "Voir", tool, type:"button", id:"loan_button" ,class:"loan_button" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</section>

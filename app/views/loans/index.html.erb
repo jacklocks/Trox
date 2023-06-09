@@ -1,0 +1,28 @@
+<section class="bg-light">
+
+<h1 style="text-align:center; padding :100px 0px 50px 0px">Mes emprunts</h1>
+
+<table class="table table-striped table-hover">
+<thead>
+    <tr>
+      <th scope="col">Numéro de l'emprunt</th>
+      <th scope="col">Nom de l'outil</th>
+      <th scope="col">Date de fin d'emprunt</th>
+      <th scope="col">Voir les détails</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% current_user.loans.each do |loan| %>
+    <tr class="align-middle">
+      <th scope="row"><%=loan.id%></th>
+      <td><%=loan.tool.title%></td>
+      <td><%=loan.end_date.strftime('%d/%m/%Y')%></td>
+      <td><%= link_to "Voir", loan, type:"button", id:"loan_button" ,class:"loan_button" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</section>
+
+

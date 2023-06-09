@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Salut <%= @loan.user.firstname  %> !</h1>
+    <p>
+      Tu as emprunté l'outil <%= @loan.tool.title %> de <%= @loan.tool.user.firstname %> <%= @loan.tool.user.lastname %>.
+    </p>
+    <p>
+      Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
+    </p>
+    <p> À très vite sur Trox !
+  </body>
+</html>
